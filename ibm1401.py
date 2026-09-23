@@ -213,10 +213,39 @@ while choice != "0":
             print(f"{day:02}/{month:02}/{year} -> INVALID DATE")
 
     elif choice == "6":
-        print("Option 6 selected")
 
+        m = int(input("First integer: "))
+        n = int(input("Second integer: "))
+
+        k = m % n
+
+        while k != 0:
+            m = n
+            n = k
+            k = m % n
+
+        print("GCD IS", n)
     elif choice == "7":
-        print("Option 7 selected")
+
+        principal = float(input("Principal: "))
+        rate = float(input("Rate (%): "))
+        years = int(input("Years: "))
+
+        total_interest = 0.0
+
+        print(f"{'YEAR':<6}{'BALANCE':>10}{'INTEREST':>12}")
+
+        for year in range(1, years + 1):
+
+            interest = principal * rate / 100.0
+
+            total_interest = total_interest + interest
+
+            principal = principal + interest
+
+            print(f"{year:<6}{principal:>10.2f}{interest:>12.2f}")
+
+        print(f"{'TOTAL INTEREST':<16}{total_interest:>12.2f}")
 
     elif choice == "0":
         print("Powering down...")
