@@ -83,7 +83,56 @@ while choice != "0":
         print(f"{'TOTAL':<12}{total_hours:>8.1f}{'':>10}{total_pay:>10.2f}")
 
     elif choice == "3":
-        print("Option 3 selected")
+
+        cards = int(input("Cards: "))
+        lines = int(input("Lines: "))
+        start_hour = int(input("Start hour (24-hour clock): "))
+        start_minute = int(input("Start minute: "))
+
+        reading_minutes = cards / 800
+        printing_minutes = lines / 600
+
+        total_minutes = reading_minutes + printing_minutes
+        total_seconds = int(total_minutes * 60)
+
+        job_hours = total_seconds // 3600
+        remaining_seconds = total_seconds - (job_hours * 3600)
+
+        job_minutes = remaining_seconds // 60
+        job_seconds = remaining_seconds - (job_minutes * 60)
+
+        print(f"Reading: {reading_minutes:.1f} min")
+        print(f"Printing: {printing_minutes:.1f} min")
+        print(f"Total: {job_hours}:{job_minutes:02}:{job_seconds:02}")
+
+        start_seconds = (start_hour * 3600) + (start_minute * 60)
+        finish_seconds = start_seconds + total_seconds
+
+        while finish_seconds >= 86400:
+            finish_seconds = finish_seconds - 86400
+
+        finish_hour = finish_seconds // 3600
+        remaining_finish = finish_seconds - (finish_hour * 3600)
+
+        finish_minute = remaining_finish // 60
+        finish_second = remaining_finish - (finish_minute * 60)
+
+        if start_hour < 8:
+            available_minutes = (8 * 60) - ((start_hour * 60) + start_minute)
+
+        else:
+            available_minutes = (24 * 60) - ((start_hour * 60) + start_minute)
+            available_minutes = available_minutes + (8 * 60)
+
+        print(
+        f"Finishes at {finish_hour:02}:{finish_minute:02}:{finish_second:02}",
+        end=""
+        )
+
+        if total_minutes <= available_minutes:
+            print(" -> ON TIME")
+        else:
+            print(" -> LATE. Morning shift will not be happy.")
 
     elif choice == "4":
         print("Option 4 selected")
