@@ -16,7 +16,39 @@ while choice != "0":
     choice = input("\nSelect: ")
 
     if choice == "1":
-        print("Option 1 selected")
+
+        record = input("Enter record: ")
+
+        length = len(record)
+
+        digits = 0
+        letters = 0
+        spaces = 0
+
+        for ch in record:
+
+            if ch.isdigit():
+                digits = digits + 1
+
+            elif ch.isalpha():
+                letters = letters + 1
+
+            elif ch == " ":
+                spaces = spaces + 1
+
+        if length == 80:
+            print("Length:", length, "-> OK")
+
+        elif length < 80:
+            print("Length:", length, "-> SHORT, padded to 80")
+
+        else:
+            print("Length:", length, "-> OVERFLOW")
+            print("Lost characters:", record[80:])
+
+        print("Digits:", digits)
+        print("Letters:", letters)
+        print("Spaces:", spaces)
 
     elif choice == "2":
         print("Option 2 selected")
