@@ -157,7 +157,8 @@ while choice != "0":
         )
 
     elif choice == "5":
-        date = input("Date (DD MM YY): ")day = int(date[0:2])
+        date = input("Date (DD MM YY): ") 
+        day = int(date[0:2])
         month = int(date[3:5])
         short_year = int(date[6:8])
 
