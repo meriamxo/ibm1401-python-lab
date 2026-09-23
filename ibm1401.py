@@ -135,7 +135,26 @@ while choice != "0":
             print(" -> LATE. Morning shift will not be happy.")
 
     elif choice == "4":
-        print("Option 4 selected")
+        memory = int(input("Memory (characters): "))
+        records = int(input("Records: "))
+        characters_per_record = int(input("Characters per record: "))
+
+        records_per_pass = memory // characters_per_record
+
+        passes = records // records_per_pass
+
+        if records % records_per_pass != 0:
+            passes = passes + 1
+
+        laptop_memory = 8000000000
+        equivalent_machines = laptop_memory // memory
+
+        print("Records per pass:", records_per_pass)
+        print("Passes needed:", passes)
+        print(
+        f"An 8 GB laptop has the memory of "
+        f"{equivalent_machines:,} of these machines."
+        )
 
     elif choice == "5":
         print("Option 5 selected")
