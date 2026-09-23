@@ -157,7 +157,59 @@ while choice != "0":
         )
 
     elif choice == "5":
-        print("Option 5 selected")
+        date = input("Date (DD MM YY): ")day = int(date[0:2])
+        month = int(date[3:5])
+        short_year = int(date[6:8])
+
+        if short_year <= 30:
+            year = 2000 + short_year
+        else:
+            year = 1900 + short_year
+
+        if year % 400 == 0:
+            leap_year = True
+
+        elif year % 100 == 0:
+            leap_year = False
+
+        elif year % 4 == 0:
+            leap_year = True
+
+        else:
+            leap_year = False
+
+        valid = True
+
+        if month < 1 or month > 12:
+            valid = False
+
+        else:
+
+            if month == 2:
+
+                if leap_year:
+                    max_days = 29
+                else:
+                    max_days = 28
+
+            elif month == 4 or month == 6 or month == 9 or month == 11:
+                max_days = 30
+
+            else:
+                max_days = 31
+
+            if day < 1 or day > max_days:
+                valid = False
+
+        if valid:
+
+            if leap_year:
+                print(f"{day:02}/{month:02}/{year} -> VALID (leap year)")
+            else:
+                print(f"{day:02}/{month:02}/{year} -> VALID")
+
+        else:
+            print(f"{day:02}/{month:02}/{year} -> INVALID DATE")
 
     elif choice == "6":
         print("Option 6 selected")
