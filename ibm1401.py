@@ -51,7 +51,36 @@ while choice != "0":
         print("Spaces:", spaces)
 
     elif choice == "2":
-        print("Option 2 selected")
+        employees = int(input("How many employees? "))
+
+        total_hours = 0
+        total_pay = 0
+
+        print("\nPAYROLL RUN")
+        print(f"{'NAME':<12}{'HOURS':>8}{'RATE':>10}{'PAY':>10}")
+
+        for i in range(employees):
+
+            name = input("\nName: ")
+            hours = float(input("Hours: "))
+            rate = float(input("Rate: "))
+
+            if hours <= 40:
+                pay = hours * rate
+
+            else:
+                normal_pay = 40 * rate
+                overtime_hours = hours - 40
+                overtime_pay = overtime_hours * rate * 1.5
+                pay = normal_pay + overtime_pay
+
+            print(f"{name:<12}{hours:>8.1f}{rate:>10.2f}{pay:>10.2f}")
+
+            total_hours = total_hours + hours
+            total_pay = total_pay + pay
+
+        print("----------------------------------------")
+        print(f"{'TOTAL':<12}{total_hours:>8.1f}{'':>10}{total_pay:>10.2f}")
 
     elif choice == "3":
         print("Option 3 selected")
